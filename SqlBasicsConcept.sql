@@ -256,88 +256,163 @@ select * from employee_data;
 
 -- Use LIMIT without OFFSET.
 -- when we use the limit without offset then the 
+-- how much limit we are applying only that record will get display
+--  start from the first rows and returns that rows only 
 
 -- Use OFFSET without ORDER BY—what happens?
+-- when we use the offset then that sql skip any rows and not guarantee that which rows are skipped
+
 
 -- Display employees from row 6 to row 10.
+select * from employee_data
+limit 4 offset 6;
 
 -- Difference between LIMIT 5, 3 and LIMIT 3 OFFSET 5.
+select * from employee_data 
+limit 3 ,5;
+-- return the records after the 3 and the 5 reocrds 
+
+select * from employee_data
+limit 3 offset 5;
+-- reuturn only 3 records after the 5
 
 -- Display second highest salary using LIMIT.
+select salary 
+from employee_data 
+ order by salary  desc
+limit 1 offset 1; 
 
 -- Why is ORDER BY important with LIMIT?
+-- when we use the order by with the limit that gives the record in the specific order
 
 -- 🔹 7. ALIASES
 
 -- Concept: Temporary names using AS
 
 -- Display city as employeeCity.
+select city as employeeCity
+from employee_data;
 
 -- Display salary as monthly_salary.
+select salary as monthly_salary
+from employee_data;
 
 -- Display emp_name as Employee Name.
+select employee_name as EmployeeName
+from employee_data;
 
 -- Use alias without AS.
+select salary monthly_salary
+from employee_data;
 
 -- Can aliases be used in WHERE clause?
+-- no aliases cannot be used before the where clause 
+-- because where clause execute before the select statement
 
 -- Use alias with aggregate functions.
+select max(salary) as max_salary
+from employee_data;
 
 -- Display salary * 12 as annual_salary.
+select salary * 12 as annual_salary
+from employee_data;
 
 -- Difference between column alias and table alias.
+-- column alias is the temporary name for the column / Exists only in query output
+-- Does not change table structure
+-- Used mainly in SELECT, ORDER BY, HAVING
+-- table alias is the temporary name for the table /Shorter queries/Self-joins/Multiple tables with same column names
+
 
 -- Use alias in ORDER BY.
+select salary as ascending_salary
+from employee_data
+order by salary ;
 
 -- Why are aliases useful?
+-- aliases are useful when we have to perform the join operation
+-- aliases are when there are two tables with the same column name
+
 
 -- 🔹 8. AGGREGATE FUNCTIONS
 
 -- Concept: MIN, MAX, COUNT, AVG, SUM
 
 -- Find the minimum salary.
+select max(salary)
+from employee_data;
 
 -- Find the maximum salary.
+select min(salary)
+from employee_data;
 
 -- Count total number of employees.
+select count(*) as employee_count
+from employee_data;
 
 -- Find average salary of employees.
+select avg(salary)
+from employee_data;
+
 
 -- Find total salary paid to all employees.
+select sum(salary) as total_salary
+from employee_data;
 
 -- Count employees from Maharashtra.
+select count(*)
+from employee_data
+where city = 'Maharashtra';
 
 -- Find highest salary in Pune.
+select max(salary)
+from employee_data 
+where city = 'Pune';
 
 -- Find average salary of employees earning above 45000.
+select avg(salary)
+from employee_data
+where salary > 45000;
 
 -- Difference between COUNT(*) and COUNT(salary).
+-- count(*) count the salary with the total number of rows null also inculde in that
+-- count(salary) ignore the null values only count the non-null values
 
 -- Can aggregate functions be used with WHERE?
+-- yes aggregate functions used with the where clause
 
 -- 🔹 9. COMMENTS
 
 -- Concept: SQL comments
 
 -- Write a single-line comment in SQL.
+-- single line comment
 
 -- Write a multi-line comment in SQL.
+/* multi line comments * /
 
 -- Comment out an INSERT statement.
+-- insert into employee_data (emp_id ,name ,city ,salary)
 
 -- Can comments affect query execution?
+-- no comments does not affect the query excution ,
+-- when we write anything inside the comments then that cannot get execute
 
 -- Why are comments important?
-
+-- comments are important due to that provides the extra information about the code
 -- Comment an entire block of SQL code.
 
 -- Use comments to explain a query.
 
 -- Are comments stored in database?
+-- no that cannot be store in database
 
 -- Can comments cause syntax errors?
+-- yes comments can cause the syntax errors
 
--- Difference between -- and /* */.
+-- Difference between -- and /* */
+-- this is used for commenting the single line
+/* this is used for comments the multiple lines */
 
 
 
