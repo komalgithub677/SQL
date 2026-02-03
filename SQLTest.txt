@@ -1,0 +1,236 @@
+create database employee;
+
+use employee;
+
+-- drop database employee IF_Exists;
+
+1) DDL COMMANDS
+1)create the table employeeDetails
+create table employeeDetails(emp_id int AUTO_INCREMENT primary key not null , emp_name varchar(50) ,gender char(1) ,age int , city varchar(30), state varchar(30) ,department varchar(30) ,designation varchar(30) ,salary int , mobNo bigint , email varchar(30) , joining_Date Date , experience int ,status varchar(30));
+
+2)Drop the employeeDetails table.
+Drop table employeeDetails
+
+4)Rename the table employeeDetails to employee_info.
+Rename table employeeDetails to employee_info;
+
+5)Truncate the employeeDetails table.
+truncate table employeeDetails;
+
+2)DML COMMANDS
+
+insert into employeeDetails(emp_name , gender , age , city , state ,department , designation , salary ,mobNo , email , joining_date , experience , status)
+values
+("Komal" , "F" , 22 , "Pune" , "Maharashtra" , "CS" , "Intern" , 500000, 9373937250 , "knarawade4@gmail.com" , '2026-01-21' , 0 , "Active"),
+("Monika" , "F" , 26 , "Mumbai" , "Punjab" , "IT" , "Trainee" , 520000, 3435367687 , "monika@gmail.com" , '2025-01-21' , 1, "Active"),
+("Pratik" , "M" , 22 , "Kolhapur" , "Rajasthan" , "Entc" , "Intern" , 510000, 9809786758 , "pratik@gmail.com" , '2025-03-21' , 1, "Active"),
+("Payal" , "F" , 23 , "Delhi" , "Gujarat" , "AI" , "Developer" , 560000, 9375677879 , "payal@gmail.com" , '2024-01-21' , 2 , "Active"),
+("Pritam" , "M" , 24 , "Ashti" , "Goa" , "CSD" , "Intern" , 580000, 9373935640 , "pritam@gmail.com" , '2023-01-21' , 3 , "Active"),
+("Kiran" , "F" , 25 , "Pune" , "Harayana" , "cs" , "Intern" , 590000, 9373937345 , "kiran@gmail.com" , '2026-01-22' , 1 , "Active"),
+("Kajal" , "F" , 27 , "Mumbai" , "Kerala" , "IT" , "Trainee" , 508000, 9373937251 , "kajal@gmail.com" , '2025-01-21' , 2 , "Active"),
+("Keshav" , "M" , 21 , "Pune" , "Sikkim" , "Robotics" , "Intern" , 502000, 9373937252 , "keshav@gmail.com" , '2025-01-23' , 2 , "Active");
+
+Insert a new employee record into employeeDetails.
+insert into employeeDetails values("Disha" ,"F" ,22 , "Pune" , "Punjab" , "Entc" , "Intern" , 600000 , 9878678698 , "disha@gmail.com" , '2025-02-23' , 0  ,'Active");
+
+Update salary of employee Komal to 550000.
+update employeeDetails set salary = 550000 where emp_name ="Komal" ;
+
+Update department of employees working in Pune.
+update employeeDetails set department = 'Senior
+
+Delete employee whose emp_name is Kiran.
+delete from employeeDetails
+where emp_name = "Kiran"; 
+
+3) NOT NULL CONSTRAINT
+
+1)Make emp_name column NOT NULL.
+alter table employeeDetails
+modify emp_name varchar(30) NULL;
+
+4) OPERATORS
+
+Display employees whose salary is greater than 550000.
+select * from employeeDetails
+where salary>550000;
+
+Display employees whose age is less than 25.
+select * from employeeDetails
+where age>25;
+
+Display employees whose salary is not equal to 500000.
+select * from employeeDetails
+where salary <> 500000;
+
+Display employees whose experience is greater than or equal to 2.
+select * employeeDetails
+where experience>2;
+
+ 5)ALTER COMMAND
+
+Add a column bonus INT to employeeDetails.
+alter table employeeDEtails
+add column bonus int;
+
+Modify salary column to DECIMAL(10,2).
+alter table employee_Details
+modify salary decimal(10 ,2);
+
+Rename column mobNo to mobile_no.
+rename column mobNo to mobile_no;
+
+Drop the column bonus from the table.
+drop table bonus;
+
+6)ORDER BY
+
+Display employees ordered by salary in ascending order.
+select emp_name ,salary from employee_Details order by salary;
+
+Display employees ordered by age in descending order.
+select emp_name , age from employeeDetails order by desc;
+
+Display employees ordered by joining_date.
+select emp_name ,joining_date
+from employeeDetails order by joining_date;
+
+7) LIMIT & OFFSET
+
+Display top 3 highest paid employees.
+select emp_name , salary
+from employeeDetails
+order by salary desc limit 3;
+
+Display first 5 records from the table.
+select * from employeeDetails
+limit 3;
+
+Display records starting from 3rd row, show next 4 rows.
+select * from employeeDetails
+limit 4 offset 3;
+
+Display second highest salary using LIMIT and OFFSET.
+select salary from employeeDetails 
+order by salary desc 
+limit 1 offset 1;
+
+8) COMMENTS
+
+Write a single-line comment in SQL.
+-- This is a single line comment
+
+Write a multi-line comment in SQL.
+/* This is a multiline comment */
+
+9)ALIASES
+
+Display emp_name as Employee Name.
+select emp_name as Employee_name from employeeDetails;
+
+Display salary as Annual Salary.
+select salary as AnnualSalary from employeeDetails;
+
+Use table alias for employeeDetails and display emp_name, city.
+select e.emp_name , e.emp_id
+from employeeDetails as e;
+
+10)AGGREGATE FUNCTIONS
+
+Find total number of employees.
+select count(*)
+from employeeDetails;
+
+Find maximum salary.
+select max(salary)
+from employeeDetails;
+
+Find minimum salary.
+select min(salary)
+from employeeDetails;
+
+Find average salary.
+select avg(salary)
+from employeeDEtails;
+
+Find total salary of all employees.
+select sum(salary) as totalSalary
+from employeeDEtails;
+
+11) LIKE OPERATOR
+
+Display employees whose name starts with K.
+select emp_name
+from employeeDetails
+where name like 'K%';
+
+Display employees whose name ends with a.
+select emp_name 
+frome employee_Details
+where name like '%a';
+
+Display employees whose city contains u.
+select emp_name
+where city like '%u%';
+
+Display employees whose email ends with @gmail.com.
+select email from employeeDetails where email '%@gmail.com';
+
+12)IN OPERATOR
+
+Display employees who belong to Pune or Mumbai.
+select emp_name , city
+from employeeDetails
+where city in ('Pune' ,'Mumbai');
+
+Display employees whose department is IT, CS, or AI.
+select emp_name , department
+from employeeDEtails
+where city in ('IT','CS' ,'AI');
+
+Display employees whose designation is Intern or Trainee.
+select emp_name , designation 
+from employeeDetails 
+where designation in ('Intern' , 'Trainee');
+
+13) BETWEEN OPERATOR
+
+Display employees whose salary is between 500000 and 560000.
+select emp_name ,salary
+from employeeDEtails
+where salary between 500000 and 560000;
+
+Display employees whose age is between 22 and 26.
+select emp_name ,age
+from employeeDEtails
+where salary between 22 and 26;
+
+Display employees whose experience is between 1 and 3.
+select emp_name ,experience
+from employeeDEtails
+where salary between 1 and 3;
+
+14)AUTO_INCREMENT
+
+Change AUTO_INCREMENT starting value to 100.
+ALTER TABLE employeeDetails AUTO_INCREMENT = 100;
+
+15)DATE DATA TYPE
+
+Display employees who joined after 2025-01-01.
+select emp_name ,joining_date
+from employeeDetails where joining_date > '2025 -01-01';
+
+Display employees who joined in year 2025.
+select emp_name ,joining_date
+from employeeDetails where YEAR(joining_date) = 2025;
+
+16) UNIQUE KEY CONSTRAINT
+
+Add UNIQUE constraint on email.
+ALTER TABLE employeeDetails
+ADD CONSTRAINT unique_email UNIQUE (email);
+
+Try inserting duplicate email values.
+INSERT INTO employeeDetails values ("Divya" , "F" , 22 , "Pune" , "Maharashtra" , "CS" , "Intern" , 500000, 9373937250 , "knarawade4@gmail.com" , '2026-01-21' , 0 , "Active"),
+
